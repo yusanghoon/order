@@ -3,7 +3,6 @@
 #wrap{
 	width:1200px;
 	height:800px;
-	background-color:red;
 }
 
 header{
@@ -16,4 +15,23 @@ header{
 
 footer{
 	height: 50px;
+}
+
+.login-box{
+	
+	width:400px;
+	height:300px;
+}
+.zenlogin{
+	background-color:skyblue;
+	width:400px;
+	height:350px;
+}
+.main-color{
+	background-color:#32A4FF;
+}
+.zenlogup{
+	background-color:skyblue;
+	width:400px;
+	height:500px;
 }
