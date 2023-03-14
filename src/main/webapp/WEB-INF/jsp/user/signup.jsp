@@ -38,7 +38,7 @@
                             <span class="input-group-text "><i class="bi bi-person-fill"></i></span>
                         </div>
                         <input id="userIdInput" type="text" class="form-control" placeholder="아이디">
-                        <input id="isDuplicateBtn" type="submit" value="중복확인" class="btn btn-sm main-color text-white">                
+                        <button id="isDuplicateBtn" type="submit" class="btn btn-sm main-color text-white">중복확인</button>                           
                     </div>
                     
                     <div class="small text-success d-none" id="availableText">사용가능한 아이디 입니다</div>
@@ -48,7 +48,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
                         </div>
-                        <input id="userPasswordInput" type="password" class="form-control" placeholder="비밀번호">
+                        <input id="passwordInput" type="password" class="form-control" placeholder="비밀번호">
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
@@ -62,9 +62,9 @@
                         </div>
                         <input id="emailInput" type="text" class="form-control" placeholder="이메일">
                     </div>           
-                    <div class="form-group">
-                        <input id="signupBtn" type="submit" value="회원가입" class="btn float-right login_btn mt-2 main-color text-white">
-                    </div>
+
+                    	<button id="signupBtn" type="submit" class="btn float-right login_btn mt-2 main-color text-white">회원가입</button>
+
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links" style="font-size:10px;">
@@ -83,12 +83,13 @@
 			
 			var isDuplicateCheck = false;
 			var isDuplicateId = true;
-			$("#isDuplicateBtn").on("click", function(){
-				
+			
+			
+			$("#isDuplicateBtn").on("click", function(){				
 				let id = $("#userIdInput").val();
 				
 				if(id == ""){
-					arelt("아이디를 입력하세요");
+					alert("아이디를 입력하세요");
 					return;
 				}
 				
@@ -99,18 +100,18 @@
 					, success : function(data){
 						isDuplicateCheck = true;
 						
-						if(data.duplicate){							
+						if(data.duplicate){						
 							isDuplicateId = true;
 							$("#duplicateText").removeClass("d-none");
-							$("#availableText").addCalss("d-none");									
+							$("#availableText").addClass("d-none");								
 						} else {
 							isDuplicateId = false;
 							$("#availableText").removeClass("d-none");
-							$("#duplicateText").addCalss("d-none");	
+							$("#duplicateText").addClass("d-none");	
 						}
 					}
 					, error:function(){
-						arelt("중복확인 에러");
+						alert("중복확인 에러");
 					}
 					
 				});
@@ -128,7 +129,7 @@
 				let email = $("#emailInput").val();
 				
 				if(name == ""){
-					arelt("이름을 입력하세요");
+					alert("이름을 입력하세요");
 					return;
 				}
 				
@@ -147,23 +148,24 @@
 					return;
 				}
 				
-				if(password = ""){
+				if(password == ""){
 					alert("비밀번호를 입력해 주세요");
 					return;
 				}
 				
-				if(verifyPassword = ""){
+				if(verifyPassword == ""){
 					alert("비밀번호확인을 입력해 주세요");
 					return;
 				}
 				
-				if(!password == verifyPassword){
-					arelt("비밀번호가 일치하지 않습니다")
+				if(password != verifyPassword){
+					alert("비밀번호가 일치하지 않습니다");
 					return;
 				}
 				
-				if(eamil == ""){
-					arelt("이메일을 입력해주세요");
+				
+				if(email == ""){
+					alert("이메일을 입력해주세요");
 					return;
 				}
 				

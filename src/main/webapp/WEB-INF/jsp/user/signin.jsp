@@ -27,25 +27,25 @@
                     <h3>LOGIN</h3>
                 </div>
                 <div class="card-body">
+                    <form id="loginForm">
                     <div class="input-group form-group">
                         <div class="input-group-prepend" >
                             <span class="input-group-text "><i class="bi bi-person-fill"></i></i></span>
                         </div>
-                        <input id="userId" type="text" class="form-control" placeholder="아이디" maxlength="30">
+                        <input id="loginIdInput" type="text" class="form-control" placeholder="아이디" maxlength="30">
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
                         </div>
-                        <input id="userPassword" type="password" class="form-control" placeholder="비밀번호" maxlength="30">
+                        <input id="PasswordInput" type="password" class="form-control" placeholder="비밀번호" maxlength="30">
                     </div>
                     <div class="row align-items-center remember">
                         <input id="rememberUserId" type="checkbox" class="ml-3"><span class="text-white">아이디저장</span>
                         <input id="useGroupwareMain" type="checkbox" class="ml-3"><span class="text-white">비밀번호</span>
                     </div>
-                    <div class="form-group">
-                        <input id="loginButton" type="submit" value="로그인" class="btn float-right login_btn mt-2 main-color">
-                    </div>
+                    	<button id="loginBtn" type="submit" class="btn float-right login_btn mt-2 main-color">로그인</button>
+                    </form>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links" style="font-size:10px;">
@@ -58,6 +58,56 @@
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
+
+	<script>
+		$(document).ready(function() {
+			
+			$("#loginForm").on("submit", function(e){
+				
+				e.preventDefault();
+				
+				let loginId = $("#loginIdInput").val();
+				let password = $("#PasswordInput").val();
+				
+				if(loginId == "") {
+					alert("아이디를 입력하세요 ");
+					return ;
+				}
+				
+				if(password == "") {
+					alert("비밀번호를 입력하세요");
+					return ;
+				}
+				
+				$.ajax({
+					type : "post"
+					, url : "/user/signin"
+					, data : {"loginId":loginId, "password":password}
+					, success : function(data){
+						if(data.result == "success"){
+							location.href = "/post/order/list"
+						}else{
+							alert("아이디 혹은 비밀번호를 확인하세요");
+						}
+					}
+					, error : function(){
+						alert("로그인 에러");
+					}
+					
+				});
+				
+				
+			});
+			
+		});	
+	
+	
+	</script>
+
+
+
+
+
 
 
 

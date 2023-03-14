@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.agora12.order.list.dao.ListDAO">
+  
+  	<select id="selectList" resultType="com.agora12.order.list.model.ListModel">
+  		SELECT
+  			`id`
+  			, `userId`
+  			, `companyName`
+  			, `ceoName`
+  			, `BusinessNumber`
+  			, `business`
+  			, `typeOfBusiness`
+  			, `phoneNumber`
+  			, `faxNumber`
+  			, `address`
+  			, `email`
+  			, `accessAuthority`
+  			, `createdAt`
+  			, `updatedAt`
+  		FROM
+  			`company`
+  		WHERE
+  			`userId` = #{userId} 
+  		ORDER BY
+  			`id` DESC;
+  			
+  		
+  	</select>
+  
+  </mapper>
