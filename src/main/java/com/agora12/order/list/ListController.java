@@ -36,5 +36,10 @@ public class ListController {
 		return "/order/list";
 	}
 	
+	@GetMapping("/created")
+	public String createdCompany() {
+		return "/order/creatcompany";
+	}
+	
 	
 }

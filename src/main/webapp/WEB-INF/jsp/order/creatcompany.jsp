@@ -18,115 +18,199 @@
 
 </head>
 <body>
+<body>
 	<div id="wrap" class="container">
 		<c:import url="/WEB-INF/jsp/include/loginheader.jsp"/>
 		<section class="d-flex">
-			<nav class="col-2 p-0">
-				<div class="mainUser main-color pl-2 pt-3">
-					<c:if test="${not empty userId }">				
-						<div><b>소속 : ${userId }</b></div>
-						<div><b>이름 : ${userName }</b></div>
-						<div><b>이메일 : ${userEmail }</b></div>
-					</c:if>
-				</div>			
-                 <ul class="content flex-column main-color justify-items-start mb-0 p-2">
-				    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-				      <!-- 하나의 item입니다. data-parent 설청과 href 설정만 제대로 하면 문제없이 작동합니다. -->
-				      <div class="panel panel-default pt-3">
-				        <div class="panel-heading" role="tab">
-				          <a class="text-white" role="button" data-toggle="collapse" 
-				          data-parent="#accordion" href="#collapse1" aria-expanded="false">
-				            등록 / 계산서
-				          </a>
-				        </div>
-				        <div id="collapse1" class="panel-collapse collapse mainUser font-weight-bold" role="tabpanel">
-				          <div class="panel-body">-등록업체조회</div>
-				          <div class="panel-body">-계산서 목록</div>
-				          <div class="panel-body">-미발행계산서 목록</div>
-				           <div class="panel-body">-신규업체 등록</div>
-				        </div>
-				      </div>
-				      <!-- -->
-				      <!-- 하나의 item입니다.  -->
-				      <div class="panel panel-default pt-2">
-				        <div class="panel-heading" role="tab">
-				          <a class="text-white" role="button" data-toggle="collapse" 
-				          data-parent="#accordion" href="#collapse2" aria-expanded="false">
-				            내역 / 사용자
-				          </a>
-				        </div>
-				        <div id="collapse2" class="panel-collapse collapse mainUser font-weight-bold" role="tabpanel">
-				          <div class="panel-body">-발주내역</div>
-				          <div class="panel-body">-아이디 검색/실시간 사용</div>
-				          <div class="panel-body">-사용종료 연장대산</div>
-				        </div>
-				      </div>
-				       <div class="panel panel-default pt-2">
-				        <div class="panel-heading" role="tab">
-				          <a class="text-white" role="button" data-toggle="collapse" 
-				          data-parent="#accordion" href="#collapse3" aria-expanded="false">
-				           	게시판
-				          </a>
-				        </div>
-				        <div id="collapse3" class="panel-collapse collapse mainUser font-weight-bold" role="tabpanel">
-				          <div class="panel-body">-작업요청</div>
-				          <div class="panel-body">-공지사항</div>
-				          <div class="panel-body">-주요 프로모션</div>
-				        </div>
-				      </div>
-				      <div class="panel panel-default pt-2">
-				        <div class="panel-heading" role="tab">
-				          <a class="text-white" role="button" data-toggle="collapse" 
-				          data-parent="#accordion" href="#collapse4" aria-expanded="false">
-				            관리자
-				          </a>
-				        </div>
-				        <div id="collapse4" class="panel-collapse collapse mainUser font-weight-bold" role="tabpanel">
-				          <div class="panel-body">-대리점 관리</div>
-				          <div class="panel-body">-제품단가</div>
-				          <div class="panel-body">-프로모션 설정</div>
-				        </div>
-				      </div> 
-				    </div>
-                 </ul>         
-            </nav>
-			<section class="col-10 pt-5 pl-5">
-				<Table class="table text center">
-					<thead>
-						<tr>
-							<th>업체코드</th>
-							<th>업체명</th>
-							<th>대표명</th>
-							<th>사업자번호</th>
-							<th>전화번호</th>
-							<th>소속지사</th>
-							<th>담당자</th>
-						</tr>
-					</thead>
-					<tbody>
-					<c:forEach var="list"  items="${list }">
-						<tr>
-							<td>${list.id }</td>
-							<td>${list.companyName }</td>
-							<td>${list.ceoName }</td>
-							<td>${list.BusinessNumber }</td>
-							<td>${list.phoneNumber }</td>
-							<td>${list.phoneNumber }</td>
-							<td>${list.phoneNumber }</td>
-						</tr>
-					</c:forEach>
-					</tbody>
-				</Table>
-			</section>
-		</section>
+		<c:import url="/WEB-INF/jsp/include/menu.jsp"/>
+			<section class="col-10 pt-5 pl-5">	
+				<section class="content bg-white d-flex justify-content-center align-items-center">
+				
+				
+				
+				<div class="zencreated">
+	                <div class="card-header text-center">
+	                    <h3>업체등록</h3>
+	                </div>
+	                <div class="card-body">
+	                 
 
+	                    <input id="companyNameInput" type="text" class="form-control mt-3" placeholder="업체명">
+	                   	<input id="passwordInput" type="password" class="form-control mt-3" placeholder="대표자명">
+
+	                    <div class="input-group form-group mt-3">
+	                        <input id="BusinessNumber1" type="text" class="form-control" >
+	                         <div class="col-1"> </div>
+	                         <input id="BusinessNumber2" type="text" class="form-control" > 
+	                         <div class="col-1"> </div>
+	                          <input id="BusinessNumber3" type="text" class="form-control">
+	                        <button id="isDuplicateBtn" type="submit" class="btn btn-sm main-color text-white">중복확인</button>                           
+	                    </div>
+	                    
+	                    <div class="small text-success d-none" id="availableText">중복되지 않은 사업자 입니다.</div>
+						<div class="small text-danger d-none" id="duplicateText">중복된 사업자 등록번호 입니다.</div>
+	                    
+	                  
+
+ 
+	                   	 <div class="input-group form-group mt-3">
+	                        <input id="userIdInput" type="text" class="form-control" placeholder="우편번호">
+	                        <button id="isDuplicateBtn" type="submit" class="btn btn-sm main-color text-white">우편번호 검색</button>                           
+	                    </div>
+	      				<input id="userIdInput" type="text" class="form-control" placeholder="도로명">      				
+	      				<input id="userIdInput" type="text" class="form-control" placeholder="나머지 주소">
+	      	
+	      	
+	                    <div class="input-group form-group mt-3">
+	                        <input id="BusinessNumber1" type="text" class="form-control" >
+	                         <div class="col-1"> </div>
+	                         <input id="BusinessNumber2" type="text" class="form-control" > 
+	                         <div class="col-1"> </div>
+	                          <input id="BusinessNumber3" type="text" class="form-control">                           
+	                    </div>
+                      
+						<div class="input-group form-group mt-3">
+	                        <input id="BusinessNumber1" type="text" class="form-control" >
+	                         <div class="col-1"> </div>
+	                         <input id="BusinessNumber2" type="text" class="form-control" > 
+	                         <div class="col-1"> </div>
+	                          <input id="BusinessNumber3" type="text" class="form-control">                       
+	                    </div>
+	                   
+	                   	<input id="businessInput" type="text" class="form-control mt-3" placeholder="업태">
+	                   
+	                   	<input id="typeOfBusinessInput" type="text" class="form-control mt-3" placeholder="종목">
+	                   	
+	                   	<input id="emailInput" type="text" class="form-control mt-3" placeholder="이메일">
+	
+	                </div>
+	                <div class="card-footer">
+	          			<button id="createdBtn" type="submit" class="btn float-right login_btn main-color text-white">업체등록</button>
+	                </div>
+	            </div>
+				
+				
+				
+				
+				
+				
+			
+			</section>	
+			</section>	
+		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
-	</div>
 	<script>
-		$(document).ready(function() {
+	$(document).ready(function() {
+		
+		var isDuplicateCheck = false;
+		var isDuplicateId = true;
+		
+		
+		
+		$("#isDuplicateBtn").on("click", function() {
+			let id = $("#loginIdInput").val();
+			
+			if(id == "") {
+				alert("아이디를 입력하세요");
+				return;
+			}
+			
+			$.ajax({
+				type:"get"
+				, url:"/user/duplicate_id"
+				, data:{"loginId":id}
+				, success:function(data) {
+					isDuplicateCheck = true;
+					
+					if(data.is_duplicate) {  // 중복된 상태
+						
+						isDuplicateId = true;
+						$("#duplicateText").removeClass("d-none");
+						$("#availableText").addClass("d-none");
+					} else { // 중복 안된 상태
+						
+						isDuplicateId = false;
+						$("#availableText").removeClass("d-none");
+						$("#duplicateText").addClass("d-none");
+					}
+					
+				}
+				, error:function() {
+					alert("중복확인 에러");
+				}
+			});
+			
+		});
+		
+		
+		$("#createdBtn").on("click", function() {
+			let id = $("#loginIdInput").val();
+			let password = $("#passwordInput").val();
+			let passwordConfirm = $("#passwordConfirmInput").val();
+			let name = $("#nameInput").val();
+			let email = $("#emailInput").val();
+			
+			if(id == "") {
+				alert("아이디를 입력하세요");
+				return;
+			}
+			
+			// 중복체크 여부 유효성 검사 
+			//if(isDuplicateCheck == false) {
+			if(!isDuplicateCheck) {
+				alert("아이디 중복확인을 해주세요");
+				return ;
+			}
+			
+			// 아이디 중복여부 유효성 검사 
+			// 중복된 상태인 경우 얼럿창 노출
+			if(isDuplicateId) {
+				alert("중복된 아이디 입니다");
+				return ;
+			}
+			
+			if(password == "") {
+				alert("비밀번호를 입력하세요");
+				retrun;
+			}
+			
+			if(password != passwordConfirm) {
+				alert("비밀번호 일치여부를 확인하세요");
+				return ;
+			}
+			
+			if(name == "") {
+				alert("이름을 입력하세요");
+				return ;
+			}
+			
+			if(email == "") {
+				alert("이메일을 입력하세요");
+				return ;
+			}
 			
 			
-		});	
+			$.ajax({
+				type:"post"
+				, url:"/user/signup"
+				, data:{"loginId":id, "password":password, "name":name, "email":email}
+				, success:function(data) {
+					if(data.result == "success") {
+						location.href = "/user/signin/view";
+					} else {
+						alert("회원가입 실패");
+					}
+				}
+				, error:function() {
+					alert("회원가입 에러");
+				}
+			});
+			
+			
+		});
+	
+		
+	});
 	
 	
 	</script>
