@@ -18,4 +18,10 @@ public class ListBO {
 		return listDAO.selectList(userId);
 	}
 	
+	public boolean duplicateBusinessNumber(String BusinessNumber){
+		
+		int count = listDAO.selectCountByBusinessNumber(BusinessNumber);
+		
+		return count !=0;
+	}
 }

@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
 <link rel="stylesheet" href="/static/css/style.css" type="text/css">
@@ -26,17 +27,21 @@
 			<section class="col-10 pt-5 pl-5">	
 				<section class="content bg-white d-flex justify-content-center align-items-center">
 				
-				
-				
 				<div class="zencreated">
 	                <div class="card-header text-center">
 	                    <h3>업체등록</h3>
 	                </div>
 	                <div class="card-body">
 	                 
+						<select class="form-control" id="companyType">
+							<option>업종을 선택하세요</option>
+							<option>세무사</option>
+							<option>일반기업</option>
+						</select>
+				
 
 	                    <input id="companyNameInput" type="text" class="form-control mt-3" placeholder="업체명">
-	                   	<input id="passwordInput" type="password" class="form-control mt-3" placeholder="대표자명">
+	                   	<input id="ceoNameInput" type="text" class="form-control mt-3" placeholder="대표자명">
 
 	                    <div class="input-group form-group mt-3">
 	                        <input id="BusinessNumber1" type="text" class="form-control" >
@@ -44,7 +49,7 @@
 	                         <input id="BusinessNumber2" type="text" class="form-control" > 
 	                         <div class="col-1"> </div>
 	                          <input id="BusinessNumber3" type="text" class="form-control">
-	                        <button id="isDuplicateBtn" type="submit" class="btn btn-sm main-color text-white">중복확인</button>                           
+	                        <button id="BusinessNumber1Btn" type="submit" class="btn btn-sm main-color text-white">중복확인</button>                           
 	                    </div>
 	                    
 	                    <div class="small text-success d-none" id="availableText">중복되지 않은 사업자 입니다.</div>
@@ -53,29 +58,22 @@
 	                  
 
  
-	                   	 <div class="input-group form-group mt-3">
-	                        <input id="userIdInput" type="text" class="form-control" placeholder="우편번호">
-	                        <button id="isDuplicateBtn" type="submit" class="btn btn-sm main-color text-white">우편번호 검색</button>                           
+	                   	 <div class="d-flex">
+	                        <input id="addressInput1" type="text" class="form-control" placeholder="우편번호">
+	                        <input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기" class="btn btn-sm main-color text-white">
+	                        
+	                        <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+							<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+							</div>
+	                                     	                                  
 	                    </div>
-	      				<input id="userIdInput" type="text" class="form-control" placeholder="도로명">      				
-	      				<input id="userIdInput" type="text" class="form-control" placeholder="나머지 주소">
+	      				<input id="addressInput2" type="text" class="form-control" placeholder="도로명">      				
+	      				<input id="addressInput3" type="text" class="form-control" placeholder="나머지 주소">
 	      	
 	      	
-	                    <div class="input-group form-group mt-3">
-	                        <input id="BusinessNumber1" type="text" class="form-control" >
-	                         <div class="col-1"> </div>
-	                         <input id="BusinessNumber2" type="text" class="form-control" > 
-	                         <div class="col-1"> </div>
-	                          <input id="BusinessNumber3" type="text" class="form-control">                           
-	                    </div>
+	                    <input id="phoneNumberInput" type="text" class="form-control mt-3" placeholder="전화번호">	
                       
-						<div class="input-group form-group mt-3">
-	                        <input id="BusinessNumber1" type="text" class="form-control" >
-	                         <div class="col-1"> </div>
-	                         <input id="BusinessNumber2" type="text" class="form-control" > 
-	                         <div class="col-1"> </div>
-	                          <input id="BusinessNumber3" type="text" class="form-control">                       
-	                    </div>
+						<input id="faxNumberInput" type="text" class="form-control mt-3" placeholder="팩스번호">	
 	                   
 	                   	<input id="businessInput" type="text" class="form-control mt-3" placeholder="업태">
 	                   
@@ -103,22 +101,35 @@
 	$(document).ready(function() {
 		
 		var isDuplicateCheck = false;
-		var isDuplicateId = true;
+		var isDuplicateBusinessNumber = true;
 		
 		
 		
-		$("#isDuplicateBtn").on("click", function() {
-			let id = $("#loginIdInput").val();
+		$("#BusinessNumber1Btn").on("click", function() {
+			let BusinessNumber1 = $("#BusinessNumber1").val();
+			let BusinessNumber2 = $("#BusinessNumber2").val();
+			let BusinessNumber3 = $("#BusinessNumber3").val();
+			let BusinessNumber = BusinessNumber1 + BusinessNumber2 + BusinessNumber3 ;
 			
-			if(id == "") {
-				alert("아이디를 입력하세요");
+			if(BusinessNumber1 == "") {
+				alert("사업자번호를 입력하세요");
+				return;
+			}
+			
+			if(BusinessNumber2 == "") {
+				alert("사업자번호를 입력하세요");
+				return;
+			}
+			
+			if(BusinessNumber3 == "") {
+				alert("사업자번호를 입력하세요");
 				return;
 			}
 			
 			$.ajax({
 				type:"get"
-				, url:"/user/duplicate_id"
-				, data:{"loginId":id}
+				, url:"/post/order/duplicateBusinessNumber"
+				, data:{"BusinessNumber":BusinessNumber}
 				, success:function(data) {
 					isDuplicateCheck = true;
 					
@@ -141,46 +152,103 @@
 			});
 			
 		});
-		
+
 		
 		$("#createdBtn").on("click", function() {
-			let id = $("#loginIdInput").val();
-			let password = $("#passwordInput").val();
-			let passwordConfirm = $("#passwordConfirmInput").val();
-			let name = $("#nameInput").val();
+			let companyType = $("#companyType").val();
+			let companyName = $("#companyNameInput").val();
+			let ceoName = $("#ceoNameInput").val();
+			let BusinessNumber1 = $("#BusinessNumber1").val();
+			let BusinessNumber2 = $("#BusinessNumber2").val();
+			let BusinessNumber3 = $("#BusinessNumber3").val();
+			let BusinessNumber = BusinessNumber1 + BusinessNumber2 + BusinessNumber3 ;
+			let addressInput1 = $("#addressInput1").val();
+			let addressInput2 = $("#addressInput2").val();
+			let addressInput3 = $("#addressInput3").val();
+			let addressInput = addressInput1 + addressInput2 + addressInput3;
+			let phoneNumber = $("#phoneNumberInput").val();
+			let faxNumber = $("#faxNumberInput").val();
+			let business = $("#businessInput").val();
+			let typeOfBusiness = $("#typeOfBusinessInput").val();
 			let email = $("#emailInput").val();
 			
-			if(id == "") {
-				alert("아이디를 입력하세요");
+			if(companyType == "업종을 선택하세요") {
+				alert("업종을 선택하세요");
 				return;
 			}
+			
+			if(companyName == "") {
+				alert("업체명을 입력하세요");
+				return;
+			}
+			
+			if(ceoName == "") {
+				alert("대표자 명을 입력하세요");
+				return;
+			}
+			
+			if(BusinessNumber1 == "") {
+				alert("사업자 번호를 입력하세요");
+				return;
+			}
+			
+			if(BusinessNumber2 == "") {
+				alert("사업자 번호를 입력하세요");
+				return;
+			}
+			
+			if(BusinessNumber3 == "") {
+				alert("사업자 번호를 입력하세요");
+				return;
+			}
+			
 			
 			// 중복체크 여부 유효성 검사 
 			//if(isDuplicateCheck == false) {
 			if(!isDuplicateCheck) {
-				alert("아이디 중복확인을 해주세요");
+				alert("사업자번호 중복확인을 해주세요");
 				return ;
 			}
 			
 			// 아이디 중복여부 유효성 검사 
 			// 중복된 상태인 경우 얼럿창 노출
-			if(isDuplicateId) {
-				alert("중복된 아이디 입니다");
+			if(isDuplicateBusinessNumber) {
+				alert("중복된 사업자번호 입니다");
 				return ;
 			}
 			
-			if(password == "") {
-				alert("비밀번호를 입력하세요");
+			if(addressInput1 == "") {
+				alert("우편번호를 입력하세요");
 				retrun;
 			}
 			
-			if(password != passwordConfirm) {
-				alert("비밀번호 일치여부를 확인하세요");
+			if(addressInput2 == "") {
+				alert("우편번호를 입력하세요");
+				retrun;
+			}
+			
+			if(addressInput1 == "") {
+				alert("우편번호를 입력하세요");
+				retrun;
+			}
+			
+			if(phoneNumber == "") {
+				alert("전화번호를 입력하세요");
 				return ;
 			}
 			
-			if(name == "") {
-				alert("이름을 입력하세요");
+			if(faxNumber == "") {
+				alert("팩스번호를 입력하세요");
+				return ;
+			}
+			
+			if(business == "") {
+				alert("업태를 입력하세요");
+				return ;
+			}
+			
+			if(typeOfBusiness == "") {
+				alert("종목을 입력하세요");
 				return ;
 			}
 			
@@ -193,16 +261,20 @@
 			$.ajax({
 				type:"post"
 				, url:"/user/signup"
-				, data:{"loginId":id, "password":password, "name":name, "email":email}
+				, data:{"companyType":companyType, "companyName":companyName
+					,"ceoName":ceoName, "BusinessNumber":BusinessNumber
+					,"address":address, "phoneNumber":phoneNumber
+					,"faxNumber":faxNumber, "business":business
+					,"typeOfBusiness":typeOfBusiness, "email":email}
 				, success:function(data) {
 					if(data.result == "success") {
 						location.href = "/user/signin/view";
 					} else {
-						alert("회원가입 실패");
+						alert("업체등록 실패");
 					}
 				}
 				, error:function() {
-					alert("회원가입 에러");
+					alert("업체등록 에러");
 				}
 			});
 			

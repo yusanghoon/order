@@ -31,5 +31,18 @@
   			
   		
   	</select>
+  	
+  	<select id="selectCountByBusinessNumber" parameterType="string" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			`company`
+		WHERE
+			`BusinessNumber` = #{BusinessNumber}
+	
+	</select>
+  	
+  	
+  	
   
   </mapper>

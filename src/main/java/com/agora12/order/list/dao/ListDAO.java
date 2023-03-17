@@ -11,4 +11,9 @@ import com.agora12.order.list.model.ListModel;
 public interface ListDAO {
 
 	public List<ListModel> selectList(@Param("userId")int userId);
+	
+	public int selectCountByBusinessNumber(@Param("BusinessNumber") String BusinessNumber);
+
+
+
 }
