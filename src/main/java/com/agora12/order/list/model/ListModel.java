@@ -6,8 +6,19 @@ public class ListModel {
 
 	private int id;
 	private int userId;
+	private String companyType;
 	private String companyName;
 	private String ceoName;
+	private String BusinessNumber;
+	private String business;
+	private String typeOfBusiness;
+	private String phoneNumber;
+	private String faxNumber;
+	private String address;
+	private String email;
+	private String accessAuthority;
+	private Date createdAt;
+	private Date updatedAt;
 	public int getId() {
 		return id;
 	}
@@ -19,6 +30,12 @@ public class ListModel {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public String getCompanyType() {
+		return companyType;
+	}
+	public void setCompanyType(String companyType) {
+		this.companyType = companyType;
 	}
 	public String getCompanyName() {
 		return companyName;
@@ -74,10 +91,10 @@ public class ListModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getAccessAuthority() {
+	public String getAccessAuthority() {
 		return accessAuthority;
 	}
-	public void setAccessAuthority(int accessAuthority) {
+	public void setAccessAuthority(String accessAuthority) {
 		this.accessAuthority = accessAuthority;
 	}
 	public Date getCreatedAt() {
@@ -92,15 +109,7 @@ public class ListModel {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	private String BusinessNumber;
-	private String business;
-	private String typeOfBusiness;
-	private String phoneNumber;
-	private String faxNumber;
-	private String address;
-	private String email;
-	private int accessAuthority;
-	private Date createdAt;
-	private Date updatedAt;
+	
+	
 	
 }

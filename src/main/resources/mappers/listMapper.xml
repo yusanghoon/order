@@ -9,6 +9,7 @@
   	<select id="selectList" resultType="com.agora12.order.list.model.ListModel">
   		SELECT
   			`id`
+  			, `companyType`
   			, `userId`
   			, `companyName`
   			, `ceoName`
@@ -41,6 +42,54 @@
 			`BusinessNumber` = #{BusinessNumber}
 	
 	</select>
+  	
+  	<insert id="insertCompany" parameterType="map">
+  		INSERT
+  			`company`
+  		(
+  			`companyType`
+  			, `userId`
+  			, `companyName`
+  			, `ceoName`
+  			, `BusinessNumber`
+  			, `business`
+  			, `typeOfBusiness`
+  			, `phoneNumber`
+  			, `faxNumber`
+  			, `address`
+  			, `email`
+  			, `accessAuthority`
+  			, `createdAt`
+  			, `updatedAt`
+  		)
+  		VALUE
+  		(
+  			#{companyType}
+  			, #{userId}
+  			, #{companyName}
+  			, #{ceoName}
+  			, #{BusinessNumber}
+  			, #{business}
+  			, #{typeOfBusiness}
+  			, #{phoneNumber}
+  			, #{faxNumber}
+  			, #{address}
+  			, #{email}
+  			, #{accessAuthority}
+  			, now()
+			, now()
+  		)
+  	
+  	
+  	</insert>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
   	
   	
   	
