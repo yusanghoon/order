@@ -89,13 +89,7 @@
 	          			<button id="createdBtn" type="submit" class="btn float-right login_btn main-color text-white">업체등록</button>
 	                </div>
 	            </div>
-				
-				
-				
-				
-				
-				
-			
+					
 			</section>	
 			</section>	
 		</section>
@@ -223,7 +217,7 @@
 					, "accessAuthority":accessAuthority}
 				, success:function(data) {
 					if(data.result == "success") {
-						location.href = "/post/order/list";
+						location.href = "/post/order/list/companyuser";
 					} else {
 						alert("업체등록 실패");
 					}

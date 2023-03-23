@@ -39,8 +39,17 @@ footer{
 	font-size:13px;
 }
 
+.zencreated-user{
+	background-color:skyblue;
+	width:400px;
+	height:380px;
+}
 
-
+.zencreated-userlist{
+	background-color:skyblue;
+	width:400px;
+	height:350px;
+}
 
 .zencreated{
 	background-color:skyblue;

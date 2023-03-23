@@ -36,12 +36,12 @@
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="list"  items="${list }">
+					<c:forEach var="list"  items="${list}">
 						<tr>
 							<td>${list.id }</td>
 							<td>${list.companyName }</td>
-							<td>${list.ceoName }</td>
-							<td>${list.BusinessNumber }</td>
+						 	<td>${list.ceoName }</td>
+							<td>${list.companyName } </td>
 							<td>${list.phoneNumber }</td>
 							<td>${list.phoneNumber }</td>
 							<td>${list.phoneNumber }</td>
@@ -55,6 +55,10 @@
 	</div>
 	<script>
 		$(document).ready(function() {
+			
+			
+			
+			
 			
 			
 		});	

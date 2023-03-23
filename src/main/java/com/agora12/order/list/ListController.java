@@ -21,24 +21,40 @@ public class ListController {
 	@Autowired
 	private ListBO listBO;
 
+	
+	// 아직 미완성 유저생성
+	@GetMapping("/list/companyuser")
+	public String companyUser() {
+		return "order/createuser";
+	}
+	
+	//아직 미완성 디테일페이지
+	
+	@GetMapping("/list/companydetail")
+	public String companydetail() {
+		return "order/listdetail";
+	}
+	
+	
+	
 	@GetMapping("/list")
 	public String orderList(
-			HttpServletRequest request
+			HttpSession session
 			,Model model) {
-		
-		HttpSession session = request.getSession();
+			
 		int userId = (Integer)session.getAttribute("userId");
 		
 		List<ListModel> list = listBO.getList(userId);
 		
 		model.addAttribute("list", list);
 		
-		return "/order/list";
+		return "order/list";
 	}
+	
 	
 	@GetMapping("/created")
 	public String createdCompany() {
-		return "/order/creatcompany";
+		return "order/createcompany";
 	}
 	
 	
