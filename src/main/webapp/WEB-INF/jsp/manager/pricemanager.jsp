@@ -26,45 +26,69 @@
 				<Table class="table text center">
 					<thead>
 						<tr>
-							<th>업체코드</th>
-							<th>업체명</th>
-							<th>대표명</th>
-							<th>사업자번호</th>
-							<th>전화번호</th>
-							<th>업체타입</th>
-							<th>생성자</th>
+							<th>순서</th>
+							<th>제품 코드</th>
+							<th>제품명</th>
+							<th>판매구분</th>
+							<th>판매가격</th>
+							<th>가능여부</th>
+							<th>관리</th>
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="list"  items="${list}">
-						<tr>
-							<td><a href="/post/order/list/companydetail?companyId=${list.id }"> ${list.id }</a></td>
-							<td><a href="/post/order/list/companydetail?companyId=${list.id }"> ${list.companyName }</a></td>
-						 	<td>${list.ceoName }</td>
-							<td>${list.businessNumber } </td>
-							<td>${list.phoneNumber }</td>
-							<td>${list.companyType }</td>
-							<td>${list.userId }</td>
+					<c:forEach var="price"  items="${price}">
+						<tr id="list">
+							<th>${price.id }</th>
+							<th>${price.code }</th>
+							<th>${price.name }</th>
+							<th>${price.type }</th>
+							<th>${price.price }</th>
+							<th>${price.Availability }</th>
+							<th><button>수정</button></th>
 						</tr>
 					</c:forEach>
 					</tbody>
 				</Table>
+				<button id="additionBtn" type="submit" class="btn float-right login_btn mt-2 main-color">추가</button>
 			</section>
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
+	
+	
 	<script>
-		$(document).ready(function() {
+		$(document).ready(function(){
+
 			
 			
 			
+			$("#additionBtn").on("click", function(){
+
+				$.ajax({
+					type : "post"
+					, url : "/post/manager/price/create"
+					, data : {}
+					, success : function(data){
+						
+						if(data.result == "success"){
+							location.href= "/post/manager/price"
+						} else {
+							arelt("추가 실패");
+						}	
+					}
+					, error : function(){
+						arelt("추가에러");
+					}
+				});
 			
-			
-			
+				
+				
+				
+			});
+	
 		});	
 	
-	
 	</script>
-
+	
+	
 </body>
-</html>

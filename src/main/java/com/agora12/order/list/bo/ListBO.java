@@ -4,12 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.agora12.order.list.dao.ListDAO;
 import com.agora12.order.list.model.ListModel;
-
-import jakarta.servlet.http.HttpSession;
 
 @Service
 public class ListBO {
@@ -21,9 +18,9 @@ public class ListBO {
 		return listDAO.selectList(userId);
 	}
 	
-	public boolean duplicateBusinessNumber(String BusinessNumber){
+	public boolean duplicateBusinessNumber(String businessNumber){
 		
-		int count = listDAO.selectCountByBusinessNumber(BusinessNumber);
+		int count = listDAO.selectCountByBusinessNumber(businessNumber);
 		
 		return count !=0;
 	}
@@ -55,6 +52,10 @@ public class ListBO {
 				, email
 				, accessAuthority
 				, userId);
+	}
+
+	public ListModel getListModel(int companyId) {		
+		return listDAO.selectListId(companyId);
 	}
 
 

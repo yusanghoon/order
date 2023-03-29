@@ -63,9 +63,9 @@
 				          </a>
 				        </div>
 				        <div id="collapse4" class="panel-collapse collapse mainUser font-weight-bold" role="tabpanel">
-				          <div class="panel-body">-대리점 관리</div>
-				          <div class="panel-body">-제품단가</div>
-				          <div class="panel-body">-프로모션 설정</div>
+				          <div class="panel-body "><a class="text-dark" href="/post/order/created">-대리점 관리</a></div>
+				           <div class="panel-body "><a class="text-dark" href="/post/manager/price">-제품단가</a></div>
+				           <div class="panel-body "><a class="text-dark"  href="/post/manager/price">-프로모션 설정</a></div>
 				        </div>
 				      </div> 
 				    </div>

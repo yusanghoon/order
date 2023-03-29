@@ -105,10 +105,10 @@
 			let companyType = $("#companyType").val();
 			let companyName = $("#companyNameInput").val();
 			let ceoName = $("#ceoNameInput").val();
-			let BusinessNumber1 = $("#BusinessNumber1").val();
-			let BusinessNumber2 = $("#BusinessNumber2").val();
-			let BusinessNumber3 = $("#BusinessNumber3").val();
-			let BusinessNumber = BusinessNumber1 + BusinessNumber2 + BusinessNumber3 ;
+			let businessNumber1 = $("#BusinessNumber1").val();
+			let businessNumber2 = $("#BusinessNumber2").val();
+			let businessNumber3 = $("#BusinessNumber3").val();
+			let businessNumber = businessNumber1 + businessNumber2 + businessNumber3 ;
 			let addressInput1 = $("#postcode").val();
 			let addressInput2 = $("#address").val();
 			let addressInput3 = $("#detailAddress").val();
@@ -135,17 +135,17 @@
 				return;
 			}
 			
-			if(BusinessNumber1 == "") {
+			if(businessNumber1 == "") {
 				alert("사업자 번호를 입력하세요");
 				return;
 			}
 			
-			if(BusinessNumber2 == "") {
+			if(businessNumber2 == "") {
 				alert("사업자 번호를 입력하세요");
 				return;
 			}
 			
-			if(BusinessNumber3 == "") {
+			if(businessNumber3 == "") {
 				alert("사업자 번호를 입력하세요");
 				return;
 			}
@@ -210,7 +210,7 @@
 				type:"post"
 				, url:"/post/order/created/company"
 				, data:{"companyType":companyType, "companyName":companyName
-					,"ceoName":ceoName, "BusinessNumber":BusinessNumber
+					,"ceoName":ceoName, "businessNumber":businessNumber
 					,"address":address, "phoneNumber":phoneNumber
 					,"faxNumber":faxNumber, "business":business
 					,"typeOfBusiness":typeOfBusiness, "email":email
@@ -232,22 +232,22 @@
 	
 		
 		$("#BusinessNumber1Btn").on("click", function() {
-			let BusinessNumber1 = $("#BusinessNumber1").val();
-			let BusinessNumber2 = $("#BusinessNumber2").val();
-			let BusinessNumber3 = $("#BusinessNumber3").val();
-			let BusinessNumber = BusinessNumber1 + BusinessNumber2 + BusinessNumber3 ;
+			let businessNumber1 = $("#BusinessNumber1").val();
+			let businessNumber2 = $("#BusinessNumber2").val();
+			let businessNumber3 = $("#BusinessNumber3").val();
+			let businessNumber = businessNumber1 + businessNumber2 + businessNumber3 ;
 			
-			if(BusinessNumber1 == "") {
+			if(businessNumber1 == "") {
 				alert("사업자번호를 입력하세요");
 				return;
 			}
 			
-			if(BusinessNumber2 == "") {
+			if(businessNumber2 == "") {
 				alert("사업자번호를 입력하세요");
 				return;
 			}
 			
-			if(BusinessNumber3 == "") {
+			if(businessNumber3 == "") {
 				alert("사업자번호를 입력하세요");
 				return;
 			}
@@ -255,7 +255,7 @@
 			$.ajax({
 				type:"get"
 				, url:"/post/order/duplicateBusinessNumber"
-				, data:{"BusinessNumber":BusinessNumber}
+				, data:{"businessNumber":businessNumber}
 				, success:function(data) {
 					isDuplicateCheck = true;
 					

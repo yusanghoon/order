@@ -13,7 +13,7 @@
   			, `userId`
   			, `companyName`
   			, `ceoName`
-  			, `BusinessNumber`
+  			, `businessNumber`
   			, `business`
   			, `typeOfBusiness`
   			, `phoneNumber`
@@ -39,7 +39,7 @@
 		FROM
 			`company`
 		WHERE
-			`BusinessNumber` = #{BusinessNumber}
+			`businessNumber` = #{businessNumber}
 	
 	</select>
   	
@@ -51,7 +51,7 @@
   			, `userId`
   			, `companyName`
   			, `ceoName`
-  			, `BusinessNumber`
+  			, `businessNumber`
   			, `business`
   			, `typeOfBusiness`
   			, `phoneNumber`
@@ -68,7 +68,7 @@
   			, #{userId}
   			, #{companyName}
   			, #{ceoName}
-  			, #{BusinessNumber}
+  			, #{businessNumber}
   			, #{business}
   			, #{typeOfBusiness}
   			, #{phoneNumber}
@@ -83,7 +83,33 @@
   	
   	</insert>
   	
+  	<select id="selectListId" parameterType="map"
+  	resultType="com.agora12.order.list.model.ListModel">
+	  	SELECT
+	  			`id`
+	  			, `companyType`
+	  			, `userId`
+	  			, `companyName`
+	  			, `ceoName`
+	  			, `businessNumber`
+	  			, `business`
+	  			, `typeOfBusiness`
+	  			, `phoneNumber`
+	  			, `faxNumber`
+	  			, `address`
+	  			, `email`
+	  			, `accessAuthority`
+	  			, `createdAt`
+	  			, `updatedAt`
+	  		FROM
+	  			`company`
+	  		WHERE
+	  			`id` = #{companyId}
+	  	
+	  	
+	  	
   	
+  	</select>
   	
   	
   	

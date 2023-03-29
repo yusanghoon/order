@@ -9,7 +9,7 @@ public class ListModel {
 	private String companyType;
 	private String companyName;
 	private String ceoName;
-	private String BusinessNumber;
+	private String businessNumber;
 	private String business;
 	private String typeOfBusiness;
 	private String phoneNumber;
@@ -50,10 +50,10 @@ public class ListModel {
 		this.ceoName = ceoName;
 	}
 	public String getBusinessNumber() {
-		return BusinessNumber;
+		return businessNumber;
 	}
 	public void setBusinessNumber(String businessNumber) {
-		BusinessNumber = businessNumber;
+		this.businessNumber = businessNumber;
 	}
 	public String getBusiness() {
 		return business;
@@ -109,7 +109,7 @@ public class ListModel {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
+
+
 	
 }

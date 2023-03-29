@@ -23,9 +23,9 @@ public class ListRestController {
 	private ListBO listBO;
 
 	@GetMapping("/duplicateBusinessNumber")
-	public Map<String, Boolean> duplicateBusinessNumber(@RequestParam("BusinessNumber") String BusinessNumber){
+	public Map<String, Boolean> duplicateBusinessNumber(@RequestParam("businessNumber") String businessNumber){
 		
-		boolean duplicate = listBO.duplicateBusinessNumber(BusinessNumber);
+		boolean duplicate = listBO.duplicateBusinessNumber(businessNumber);
 		
 		Map<String, Boolean> result = new HashMap<>();
 		
@@ -42,7 +42,7 @@ public class ListRestController {
 			 @RequestParam("companyType") String companyType
 			, @RequestParam("companyName") String companyName
 			, @RequestParam("ceoName") String ceoName
-			, @RequestParam("BusinessNumber") String BusinessNumber
+			, @RequestParam("businessNumber") String businessNumber
 			, @RequestParam("address") String address
 			, @RequestParam("phoneNumber") String phoneNumber
 			, @RequestParam("faxNumber") String faxNumber
@@ -57,7 +57,7 @@ public class ListRestController {
 		int count = listBO.createdCompany(companyType
 									, companyName
 									, ceoName
-									, BusinessNumber
+									, businessNumber
 									, address
 									, phoneNumber
 									, faxNumber

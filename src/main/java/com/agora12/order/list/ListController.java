@@ -7,11 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.agora12.order.list.bo.ListBO;
 import com.agora12.order.list.model.ListModel;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -31,7 +31,15 @@ public class ListController {
 	//아직 미완성 디테일페이지
 	
 	@GetMapping("/list/companydetail")
-	public String companydetail() {
+	public String companydetail(
+			@RequestParam("companyId") int companyId
+			, Model model) {
+		
+		ListModel listModel = listBO.getListModel(companyId);
+		
+		model.addAttribute("listModel", listModel);
+		
+		
 		return "order/listdetail";
 	}
 	

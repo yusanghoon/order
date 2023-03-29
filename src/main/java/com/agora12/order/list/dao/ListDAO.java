@@ -15,13 +15,13 @@ public interface ListDAO {
 
 	public List<ListModel> selectList(@Param("userId")int userId);
 	
-	public int selectCountByBusinessNumber(@Param("BusinessNumber") String BusinessNumber);
+	public int selectCountByBusinessNumber(@Param("businessNumber") String businessNumber);
 
 	public int insertCompany(
 			@Param("companyType") String companyType
 			, @Param("companyName") String companyName
 			, @Param("ceoName") String ceoName
-			, @Param("BusinessNumber") String BusinessNumber
+			, @Param("businessNumber") String businessNumber
 			, @Param("address") String address
 			, @Param("phoneNumber") String phoneNumber
 			, @Param("faxNumber") String faxNumber
@@ -31,4 +31,10 @@ public interface ListDAO {
 			, @Param("accessAuthority") String accessAuthority
 			, @Param("userId") int userId);
 
+	public ListModel selectListId(@Param("companyId") int companyId);
+	
+	
+	
+	
+	
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.agora12.order.manager.dao.ManagerDAO">
+  
+  
+  
+  <insert id="defaultIsertprice" parameterType="map">
+		INSERT INTO
+			`price`
+		(
+			`id`
+			, `code`
+			, `name`
+			, `type`
+			, `price`
+			, `Availability`		
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUE
+		(
+			#{id}
+			, `code` = "수정요망"
+			, #{name}
+			, #{type}
+			, #{price}
+			, #{Availability}
+			, now()
+			, now()
+		)
+		
+	</insert>
+  
+  
+  
+  
+  
+  	<insert id="insertprice" parameterType="map">
+		INSERT INTO
+			`price`
+		(
+			`id`
+			, `code`
+			, `name`
+			, `type`
+			, `price`
+			, `Availability`		
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUE
+		(
+			#{id}
+			, #{code}
+			, #{name}
+			, #{type}
+			, #{price}
+			, #{Availability}
+			, now()
+			, now()
+		)
+		
+	</insert>
+  
+	<select id="selectList" parameterType="map"
+	  	resultType="com.agora12.order.manager.model.ManagerModel">
+		  SELECT
+		  	`id`
+			, `code`
+			, `name`
+			, `type`
+			, `price`
+			, `Availability`		
+			, `createdAt`
+			, `updatedAt`
+		  	FROM
+		  		`price`
+		  	WHERE
+		  		`id` = #{userId}
+	
+	  </select>
+  
+  
+  
+  
+  </mapper>
