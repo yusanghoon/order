@@ -33,11 +33,11 @@ public class ManagerController {
 			
 		int userId = (Integer)session.getAttribute("userId");
 		
-		List<ManagerModel> price = managerBO.getprice(userId);
+		List<ManagerModel> price = managerBO.getList(userId);
 		
 		model.addAttribute("price", price);
 		
-		return "order/list";
+		return "manager/pricemanager";
 	}
 	
 	

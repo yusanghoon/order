@@ -55,17 +55,17 @@ public class ManagerRestController {
 	
 	
 	@PostMapping("/price/create")
-	public Map<String, String> createPrice() {
+	public Map<String, String> create() {
+
 		
-		
-		
-	
+		int count = managerBO.createPrice();
 		
 		Map<String, String> result = new HashMap<>();
-		
+		if(count == 1) {
 			result.put("result", "success");
-		
-		
+		} else {
+			result.put("result", "fail");
+		}
 		return result;
 		
 	}

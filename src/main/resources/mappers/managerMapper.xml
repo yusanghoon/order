@@ -12,24 +12,12 @@
 		INSERT INTO
 			`price`
 		(
-			`id`
-			, `code`
-			, `name`
-			, `type`
-			, `price`
-			, `Availability`		
-			, `createdAt`
+			 `createdAt`
 			, `updatedAt`
 		)
 		VALUE
 		(
-			#{id}
-			, `code` = "수정요망"
-			, #{name}
-			, #{type}
-			, #{price}
-			, #{Availability}
-			, now()
+			 now()
 			, now()
 		)
 		
@@ -74,14 +62,12 @@
 			, `name`
 			, `type`
 			, `price`
-			, `Availability`		
+			, `availability`
 			, `createdAt`
 			, `updatedAt`
 		  	FROM
 		  		`price`
-		  	WHERE
-		  		`id` = #{userId}
-	
+
 	  </select>
   
   

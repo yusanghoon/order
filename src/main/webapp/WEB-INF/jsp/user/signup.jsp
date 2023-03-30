@@ -178,11 +178,11 @@
 						if(data.result == "success"){
 							location.href= "/user/signin/view"
 						} else {
-							arelt("회원가입 실패");
+							alert("회원가입 실패");
 						}	
 					}
 					, error : function(){
-						arelt("회원가입 에러");
+						alert("회원가입 에러");
 					}
 				});
 				

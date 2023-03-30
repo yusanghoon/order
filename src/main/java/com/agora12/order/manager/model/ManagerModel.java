@@ -9,6 +9,7 @@ public class ManagerModel {
 	private String name;
 	private String type;
 	private int price;
+	private String Availability;
 	private Date createdAt;
 	private Date updatedAt;
 	
@@ -42,6 +43,12 @@ public class ManagerModel {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public String getAvailability() {
+		return Availability;
+	}
+	public void setAvailability(String availability) {
+		Availability = availability;
+	}
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -54,5 +61,7 @@ public class ManagerModel {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	
 	
 }

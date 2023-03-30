@@ -16,7 +16,7 @@ public class ManagerBO {
 	@Autowired
 	private ManagerDAO managerDAO;
 	
-	public List<ManagerModel> getprice(int userId) {		
+	public List<ManagerModel> getList(int userId) {		
 		return managerDAO.selectList(userId);
 	}
 	
@@ -26,7 +26,7 @@ public class ManagerBO {
 			,String name
 			,String type
 			,String price
-			,String Availability			
+			,String availability			
 			,int userId) {
 		return managerDAO.insertprice(
 				id
@@ -34,7 +34,7 @@ public class ManagerBO {
 				, name
 				, type
 				, price
-				, Availability
+				, availability
 				, userId);
 			}
 	

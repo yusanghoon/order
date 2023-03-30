@@ -18,7 +18,7 @@ public interface ManagerDAO {
 			, @Param("name") String name
 			, @Param("type") String type
 			, @Param("price") String price
-			, @Param("Availability") String Availability			
+			, @Param("availability") String availability			
 			, @Param("userId") int userId);
 	
 	public int defaultIsertprice();

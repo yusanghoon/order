@@ -38,7 +38,7 @@ public class ListRestController {
 
 	
 	@PostMapping("/created/company")
-	public Map<String, String> modifyMemo(
+	public Map<String, String> created(
 			 @RequestParam("companyType") String companyType
 			, @RequestParam("companyName") String companyName
 			, @RequestParam("ceoName") String ceoName
