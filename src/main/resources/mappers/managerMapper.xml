@@ -69,7 +69,16 @@
 		  		`price`
 
 	  </select>
+
+
   
+  	<delete id="deletePriceId" parameterType="int">
+		DELETE FROM 
+			`price`
+		WHERE 
+			`id` = #{priceId}
+	
+	</delete>
   
   
   

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,13 +16,13 @@ import com.agora12.order.manager.bo.ManagerBO;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/post/manager")
+@RequestMapping("/post/manager/price")
 public class ManagerRestController {
 
 	@Autowired
 	private ManagerBO managerBO;
 	
-	@PostMapping("/price/add")
+	@PostMapping("/add")
 	public Map<String, String> addPrice(
 			@RequestParam("id") int id
 			, @RequestParam("code") String code
@@ -54,7 +55,7 @@ public class ManagerRestController {
 	}
 	
 	
-	@PostMapping("/price/create")
+	@PostMapping("/create")
 	public Map<String, String> create() {
 
 		
@@ -69,5 +70,27 @@ public class ManagerRestController {
 		return result;
 		
 	}
+	
+	
+	@GetMapping("/delete")
+	public Map<String, String> delete(
+			@RequestParam("priceId") int priceId) {
+		
+		int count = managerBO.deletePrice(priceId);
+		
+		Map<String, String> result = new HashMap<>();
+		if(count == 1) {
+			result.put("result", "success");
+		} else {
+			result.put("reslut", "fail");
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+	
 	
 }

@@ -10,6 +10,9 @@ import com.agora12.order.list.model.ListModel;
 import com.agora12.order.manager.dao.ManagerDAO;
 import com.agora12.order.manager.model.ManagerModel;
 
+
+
+
 @Service
 public class ManagerBO {
 	
@@ -41,6 +44,18 @@ public class ManagerBO {
 	public int createPrice() {
 		return managerDAO.defaultIsertprice();
 	}
+	
+	
+	public int deletePrice(int priceId) {
+			
+		int count = managerDAO.deletePriceId(priceId);
+		
+		return count;
+
+		
+	}
+	
+	
 	
 	
 }

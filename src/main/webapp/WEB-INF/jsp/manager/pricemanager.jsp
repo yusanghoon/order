@@ -46,8 +46,8 @@
 							<th>${price.availability }</th>
 							
 							<th>
-							<button id="modifyBtn" type="submit" data-post-id="${price.id }" class="btn modifyBtn main-color text-white">수정</button>
-							<button id="deleteBtn" type="submit" data-post-id="${price.id }" class="btn deleteBtn bg-danger text-white">삭제</button>
+							<button type="submit" data-post-id="${price.id }" class="btn modify-Btn main-color text-white">수정</button>
+							<button type="submit" data-post-id="${price.id }" class="btn delete-Btn bg-danger text-white">삭제</button>
 							</th>
 							
 						</tr>
@@ -66,8 +66,8 @@
 
 			
 			
-	/* 		$("#deleteBtn").on("click", function() {
-				alert("삭제 실패");
+	 		/* $(".delete-Btn").on("click", function() {
+				
 				// 해당 more-btn 태그에있는 post-id를 모달의 a태그에 넣는다. 
 				let priceId = $(this).data("post-id");
 				
@@ -75,20 +75,21 @@
 				// data-post-id=""
 				$("#deleteBtn").data("post-id", priceId);
 				
-				
-			}); */
+			});  */
 			
-			$(".deleteBtn").on("click", function() {
+			$(".delete-Btn").on("click", function() {
+				
 				let priceId = $(this).data("post-id");
-				alert(priceId);
+				
 				
 				$.ajax({
 					type:"get"
-					, url:"/post/delete"
+					, url:"/post/manager/price/delete"
 					, data:{"priceId":priceId}
 					, success:function(data) {
 						if(data.result == "success") {
 							location.reload();
+							alert("삭제 완료");
 						} else {
 							alert("삭제 실패");
 						}

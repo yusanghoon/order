@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.agora12.order.manager.model.ManagerModel;
 
+
+
 @Repository
 public interface ManagerDAO {
 
@@ -22,5 +24,12 @@ public interface ManagerDAO {
 			, @Param("userId") int userId);
 	
 	public int defaultIsertprice();
+	
+	
+	
+	public int deletePriceId(
+			@Param("priceId") int priceId);
+	
+	
 	
 }
