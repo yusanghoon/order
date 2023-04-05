@@ -3,7 +3,8 @@ package com.agora12.order.manager;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.agora12.order.manager.bo.ManagerBO;
-
-import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/post/manager/price")

@@ -4,11 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.agora12.order.list.model.ListModel;
-
-import jakarta.servlet.http.HttpSession;
 
 @Repository
 public interface ListDAO {
