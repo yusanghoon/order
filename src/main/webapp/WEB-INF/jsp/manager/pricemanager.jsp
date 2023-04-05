@@ -64,19 +64,8 @@
 	<script>
 		$(document).ready(function(){
 
-			
-			
-	 		/* $(".delete-Btn").on("click", function() {
-				
-				// 해당 more-btn 태그에있는 post-id를 모달의 a태그에 넣는다. 
-				let priceId = $(this).data("post-id");
-				
-				
-				// data-post-id=""
-				$("#deleteBtn").data("post-id", priceId);
-				
-			});  */
-			
+	 	
+			/* 삭제 */
 			$(".delete-Btn").on("click", function() {
 				
 				let priceId = $(this).data("post-id");
@@ -102,7 +91,10 @@
 			});
 			
 			
+			/* 수정 */
 			
+			
+		
 			
 			
 			$("#additionBtn").on("click", function(){

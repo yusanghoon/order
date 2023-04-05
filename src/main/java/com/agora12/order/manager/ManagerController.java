@@ -46,5 +46,11 @@ public class ManagerController {
 		return "order/createcompany";
 	}
 	
+	@GetMapping("/modify")
+	public String modify() {
+		return "order/modifyprice";
+	}
+	
+	
 	
 }

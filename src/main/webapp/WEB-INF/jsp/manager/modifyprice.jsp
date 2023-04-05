@@ -38,23 +38,23 @@
 					<tbody>
 					<c:forEach var="price"  items="${price}">
 						<tr id="list">
-							<th>${price.id }</th>
-							<th>${price.name }</th>
-							<th>${price.code }</th>
-							<th>${price.type }</th>
-							<th>${price.price }</th>
-							<th>${price.availability }</th>
+							<th><input type="text">${price.id }</th>
+							<th><input type="text">${price.name }</th>
+							<th><input type="text">${price.code }</th>
+							<th><input type="text">${price.type }</th>
+							<th><input type="text">${price.price }</th>
+							<th><input type="text">${price.availability }</th>
 							
 							<th>
-							<button id="modifyBtn" type="submit" class="btn modify_btn main-color text-white">수정</button>
-							<button id="deleteyBtn" type="submit" class="btn modify_btn bg-danger text-white">삭제</button>
+							<button type="submit" data-post-id="${price.id }" class="btn modify-Btn main-color text-white">수정 완료</button>
+							
 							</th>
 							
 						</tr>
 					</c:forEach>
 					</tbody>
 				</Table>
-				<button id="additionBtn" type="submit" class="btn float-right login_btn mt-2 main-color">추가</button>
+			
 			</section>
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
@@ -64,30 +64,22 @@
 	<script>
 		$(document).ready(function(){
 
-			
-			
 
-			$(".modifyBtn").on("click", function() {
-				// 해당 more-btn 태그에있는 post-id를 모달의 a태그에 넣는다. 
-				let postId = $(this).data("post-id");
-				
-				
-				// data-post-id=""
-				$("#deleteBtn").data("post-id", postId);
-				
-				
-			});
 			
-			$("#deleteBtn").on("click", function() {
-				let postId = $(this).data("post-id");
+			
+			$(".modify-Btn").on("click", function() {
+				
+				let priceId = $(this).data("post-id");
+				
 				
 				$.ajax({
 					type:"get"
-					, url:"/post/delete"
-					, data:{"postId":postId}
+					, url:"/post/manager/price/modify"
+					, data:{"priceId":priceId}
 					, success:function(data) {
 						if(data.result == "success") {
 							location.reload();
+							
 						} else {
 							alert("삭제 실패");
 						}
@@ -98,6 +90,8 @@
 					}
 				});
 			});
+			
+
 	
 		});	
 	
